@@ -1,7 +1,7 @@
 import { supabase } from '@/services/supabase';
 import { useState, useEffect } from 'react';
 
-function App() {
+export const App = () => {
     const [countries, setCountries] = useState([]);
 
     useEffect(() => {
@@ -25,6 +25,4 @@ function App() {
             </ul>
         </main>
     );
-}
-
-export default App;
+};
