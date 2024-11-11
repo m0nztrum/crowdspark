@@ -1,15 +1,15 @@
 <h1 align='center'>Crowdspark</h1>
 
-CrowdSpark is a simple web app to manage events Q&A etc ...
+Crowdspark is a simple web app to manage events Q&A etc ...
 
 ## Features
 
 ## Technologies Used
 
--   React with TypeScript
--   Tailwind Css for styling
--   Supabase for database
--   React-router for routing
+-   [React with TypeScript](https://vite.dev)
+-   [tailwindcss](https://tailwindcss.com)
+-   [Supabase](https://supabase.com)
+-   [React Router](https://reactrouter.com)
 
 ## Setup
 
@@ -29,8 +29,8 @@ CrowdSpark is a simple web app to manage events Q&A etc ...
 3. **Environment Variables**: Set up your `.env` file with the following variables:
 
     ```
-    VITE_SUPABASE_URL=[Your API URL]
-    VITE_SUPABASE_ANON_KEY=[Your API Key]
+    VITE_SUPABASE_URL=[Your Project URL]
+    VITE_SUPABASE_ANON_KEY=[Your Supabase Anon Key]
     ```
 
 4. **Run the application**:
