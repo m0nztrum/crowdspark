@@ -16,6 +16,7 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { EventForm } from '@/components/Event/EventForm';
 
 export const AdminEvents = () => {
     return (
@@ -32,8 +33,7 @@ export const AdminEvents = () => {
                                     Create a new Event?
                                 </DialogTitle>
                                 <DialogDescription>
-                                    This action cannot be undone. This will permanently delete your
-                                    account and remove your data from our servers.
+                                    <EventForm />
                                 </DialogDescription>
                             </DialogHeader>
                         </DialogContent>
