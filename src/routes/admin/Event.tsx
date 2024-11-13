@@ -1,13 +1,5 @@
 import { AdminLayout } from '@/layout/AdminLayout';
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
-import {
     Dialog,
     DialogContent,
     DialogDescription,
@@ -17,15 +9,35 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { EventForm } from '@/components/Event/EventForm';
+import { EventList } from '@/components/Event/EventList';
+import { Event } from '@/types';
+import { useState, useCallback, useEffect } from 'react';
+import { supabase } from '@/services/supabase';
 
 export const AdminEvents = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [events, setEvents] = useState<Event[]>([]);
+    const toggleDialog = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const { data, error } = await supabase.from('events').select('*');
+            if (data && !error) {
+                setEvents(data);
+            }
+        };
+        fetchEvents();
+    }, []);
+
     return (
         <AdminLayout title="Event">
             <div className="flex">
                 <div>
-                    <Dialog>
+                    <Dialog open={isOpen} onOpenChange={setIsOpen}>
                         <DialogTrigger>
-                            <Button variant="default">Add Event</Button>
+                            <Button onClick={toggleDialog} variant="default">
+                                Add Event
+                            </Button>
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
@@ -40,21 +52,9 @@ export const AdminEvents = () => {
                     </Dialog>
                 </div>
             </div>
-            <Table>
-                {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[100px]"># No</TableHead>
-                        <TableHead>Name</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    <TableRow>
-                        <TableCell className="font-medium">01</TableCell>
-                        <TableCell>Art Event</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
+            <div className="mt-4">
+                <EventList events={events} />
+            </div>
         </AdminLayout>
     );
 };

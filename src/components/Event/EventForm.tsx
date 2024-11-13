@@ -7,16 +7,38 @@ import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
+import { supabase } from '@/services/supabase';
 
 export const EventForm = () => {
     const [startDate, setStartDate] = useState<Date>();
     const [endDate, setEndDate] = useState<Date>();
+    const [name, setName] = useState<string>();
+    const [saveInProgress, setSaveInProgress] = useState(false);
+
+    const handleOnSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const payload = {
+            name,
+            start_date: startDate?.toISOString(),
+            end_date: endDate?.toISOString(),
+        };
+        const { error } = await supabase.from('events').insert(payload);
+        if (!error) {
+            setSaveInProgress(true);
+            console.log('Event Created');
+        }
+    };
 
     return (
-        <form>
+        <form onSubmit={handleOnSubmit}>
             <div className="mt-4">
                 <Label className="mb-2 block">Email</Label>
-                <Input type="text" placeholder="Creative Arts Event" />
+                <Input
+                    type="text"
+                    placeholder="Enter Event Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
             </div>
             <div className="mt-4">
                 <Label className="mb-2 block">Start Date</Label>
@@ -73,7 +95,7 @@ export const EventForm = () => {
                 </div>
             </div>
             <div className="mt-4">
-                <Button>Save</Button>
+                <Button type="submit">{saveInProgress ? 'Saving...' : 'Save'}</Button>
             </div>
         </form>
     );
