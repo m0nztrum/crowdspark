@@ -1,13 +1,22 @@
 <h1 align='center'>Crowdspark</h1>
-
 Crowdspark is a simple web app to manage events Q&A etc ...
+
+<!--toc:start-->
+
+-   [Features](#features)
+-   [Technologies Used](#technologies-used)
+-   [Setup](#setup)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+<!--toc:end-->
 
 ## Features
 
 ## Technologies Used
 
--   [React with TypeScript](https://vite.dev)
--   [tailwindcss](https://tailwindcss.com)
+-   [React with TypeScript](https://react.dev)
+-   [Vite](https://vite.dev)
+-   [Tailwindcss](https://tailwindcss.com)
 -   [Supabase](https://supabase.com)
 -   [React Router](https://reactrouter.com)
 
@@ -33,12 +42,13 @@ Crowdspark is a simple web app to manage events Q&A etc ...
     VITE_SUPABASE_ANON_KEY=[Your Supabase Anon Key]
     ```
 
-4. **Run the application**:
-    ```bash
-    npm run dev
-    ```
-
 ## Usage
+
+**Run the application**:
+
+```bash
+npm run dev
+```
 
 ## Contributing
 
